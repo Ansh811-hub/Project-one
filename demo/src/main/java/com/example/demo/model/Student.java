@@ -1,7 +1,13 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+// Student represents one student and contains
+@Entity
 public class Student {
 
+    @Id
     private int id;
     private String name;
     private int age;

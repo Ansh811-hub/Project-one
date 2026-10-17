@@ -1,25 +1,32 @@
 package com.example.demo.Service;
 
 import com.example.demo.model.Student;
+import com.example.demo.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+// StudentService contains the business logic.
+
+
 @Service
 public class StudentService {
-    private final List<Student> students = new ArrayList<>();
 
-    public StudentService() {
-        students.add(
-                new Student(1, "Rahul", 20, 85)
-        );
+    private final StudentRepository studentRepository;
 
-        students.add(
-                new Student(2, "Ansh", 21, 92)
-        );
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
+
     public List<Student> getAllStudents() {
-        return students;
+        return studentRepository.findAll();
+    }
+
+    public Student addStudents(Student student) {
+        return studentRepository.save(student);
     }
 }
+
+// StudentRepository will be responsible for communicating with the database.
